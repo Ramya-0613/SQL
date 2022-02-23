@@ -1,0 +1,142 @@
+1. The RDBMS(relational database management sysyem) is a system complying to the relational model developed by IBMS codd. it allows the user construct, modify and adminstration a relational database. most of the database that exist today are an extension of this age old model. the data is structure in database tables,fields and records.
+*the stored data is allowed to be manipuleted using relational operators 
+*SQL is used as structured qurey language 
+*it is used to  communicated with database 
+SQL COMMANDS:
+*Query
+*inserting
+*deleting
+*selecting 
+*updating
+*creating and drop
+ADVANTAGES OF RDBMS:
+1.prevents the data redundance
+2.data security 
+3.easy to use 
+4.it is more complexity
+this is all about rdbms over a file system
+
+2.ACID PROPERTIES:
+In the contex of tranction processing,the acronum acid refers to four key properties of a transaction 
+*Atomicity:all changes to the data are preformed as if they are a single operation 
+example:data transfer to one to another applicatins.
+*Consistency:data is in a consistent state when a transaction starts and ehen it ends.
+example:in an application that transfer fund from one account to another,the consistency 
+total the values of both the acconnts is the same start and end
+*Isolation:the intermediate state of a tranction is invisible to other tranctions. 
+*Durability:after a transaction successfully completes  changes to data persists and are not undone
+
+3.NORMALIZATION:It is usually performed on the data model after an new version of tables and their relationships has been delveloped 
+in the model
+LEVELS OF THE NORMALIZATION:
+*Normalization is hierchically classified into numeric forms,the most common being fast,second
+and third normalform
+**first normal form:repeating a group of data columns in a tables have been eleminated such that data is organised
+**second normal form:data is in first normal form, and redundancy on primary key fields has been eliminated 
+**third normal form:data is in second normal form and each column is not dependent on another non key column
+
+4.Types of SQL Commands
+In this section, we will be discussing types of SQL commands. SQL Commands are divided into five broad categories – DDL, DML, DCL, TCL, and DQL. Each category is further explained below:
+
+Data Definition Language(DDL):The Data Definition Language is made up of SQL commands that can be used to design the database structure. It simply handles database schema descriptions and is used to construct and modify the structure of database objects in the database. DDL refers to a set of SQL instructions for creating, modifying, and deleting database structures, but not data. A general user, who should be accessing the database through an application, should not execute these instructions. All DDL commands are auto-committed, which means they store all database changes permanently. Different DDL commands that construct the
+CREATE Command:  The database or its objects are created with this command (like table, index, function, views, store procedure, and triggers). There are two types of CREATE statements in SQL, one is for the creation of a database and the other for a table
+Syntax: CREATE DATABASE db_name;
+db_name : name of the database(any name can be given)
+Data Manipulation Language:
+The SQL commands that deal with manipulating data in a database are classified as DML (Data Manipulation Language), which covers the majority of SQL statements. It’s the part of the SQL statement that regulates who has access to the data and the database. DCL statements are grouped together with DML statements. The DML command is not auto-committed, which means it cannot preserve all database modifications permanently. They have the potential to be rolled back. 
+Different DML commands are:
+
+INSERT Command: It is used to insert data into a table’s row.
+Syntax: INSERT INTO TABLE_NAME  (col1, col2, col3,…. col N)  
+VALUES (value1, value2, value3, …. valueN);  
+
+UPDATE Command: In SQL, the UPDATE statement is used to update data in an existing database table. We can use the Alter statement to update single or several columns depending on our needs.
+Syntax: UPDATE table_name SET column1 = value1, column2 = value2,…
+WHERE condition; 
+Example: UPDATE Employee SET Mobile=9935467903 WHERE Emp_Name=’Joe’;
+DELETE Command: In SQL, the DELETE statement is used to delete records from a table. Depending on the condition we set in the WHERE clause, we can delete a single record or numerous records.
+Syntax: DELETE FROM table_name [WHERE condition];
+
+Example: DELETE FROM Employee WHERE Emp_Name=’Joe’;
+
+The above command will delete the record for employee with name ‘Joe’ from ‘Employee’ table.
+
+Data Control Language(DCL):
+DCL (Data Controlling Language) is a query language that allows users to retrieve and edit data held in databases. The types of Data Controlling Language commands include Grant and Revoke.
+
+GRANT Command: User access privileges to a database are given by this command. It can be used to grant SELECT, INSERT, UPDATE, and DELETE privileges to a user on a single table or several tables.
+Syntax: GRANT SELECT, UPDATE ON MY_TABLE TO SOME_USER, ANOTHER_USER;
+
+Example: GRANT INSERT, SELECT on accounts to Alex
+
+Using this command, Alex has been granted permissions on accounts database objects like he can query or insert into accounts. 
+
+REVOKE Command: To take back permissions from the user REVOKE command is used. It is used to revoke a privilege (by default) or a specific command, such as UPDATE or DELETE, depending on the situation.
+Syntax: REVOKE privilege_name ON object_name FROM {user_name |PUBLIC |role_name}
+
+Example: REVOKE INSERT, SELECT on accounts from John
+
+Using this command, the permissions of John like query or insert on accounts database objects has been removed. 
+
+Transaction Control Language(TCL):
+Transaction Control Language (TCL) instructions are used in the database to manage transactions. This command is used to handle the DML statements’ modifications. TCL allows you to combine your statements into logical transactions.
+
+Below mentioned are some of the TCL commands:
+
+COMMIT Command: To save all the transactions in the database Commit is used.
+Syntax: COMMIT;
+
+Example: UPDATE Employee SET DOB=’1995-02-17’ WHERE Emp_Name=’Joe’;
+COMMIT;
+This example will insert the dob in the table which have name = Joe and then COMMIT the changes in the database.
+
+ROLLBACK Command: All modifications must be canceled if any of the SQL grouped statements produce an error. The term “rollback” refers to the process of undoing changes. This command can only be used to reverse transactions that have occurred since the last COMMIT or ROLLBACK command.
+Syntax: ROLLBACK;
+
+Example: UPDATE Employee SET DOB=’1995-02-17’ WHERE Emp_Name=’Joe’;
+ROLLBACK;
+
+This example would insert the dob in the table which have name = Joe and then ROLLBACK the changes in the database. Thus, this operation would not impact the table.
+
+SAVEPOINT Command: It’s used to roll back a transaction to a specific point rather than the complete transaction.
+Syntax: SAVEPOINT SavepointName;
+
+Among all transactions, this command is exclusively used to create SAVEPOINT.
+ROLLBACK is a command that is used to undo a set of transactions.
+
+The syntax for rollback to savepoint command:
+ROLLBACK TO SavepointName;
+
+Example: SAVEPOINT S1; //savepoint created
+DELETE FROM Employee WHERE Emp_Name = ‘Joe’; //deleted
+SAVEPOINT S2; //Savepoint created.
+
+Data Query Language(DQL): 
+DQL statements are used to query the data contained in schema objects. The DQL Commands goal is to return a schema relation depending on the query supplied to it. DQL can be defined as follows: It’s a part of a SQL statement that lets you get data from a database and put it in order. The SELECT statement is included. This command allows you to extract data from a database in order to conduct actions on it. This is the same as the relational algebra projection operation. When a SELECT statement is executed on a table or set of tables, the result is compiled into a new temporary table, which is then displayed or received by the program, i.e. a front-end. 
+
+The database server examines the chosen clause, which is the first and one of the last clauses of the select statement. The reason for this is that we need to know all of the alternative columns that could be included in the final result set before we can decide what to include in it.
+
+            Syntax: SELECT expressions FROM Tables WHERE conditions;
+
+            Example: SELECT Emp_Name FROM Employee WHERE Mobile=9935467903;
+
+The above command will select the record from the ‘Employee’ table where the mobile number is ‘9935467903’.
+
+Conclusion
+So far we have discussed all the five categories of SQL Commands i.e DCL, DML, DDL, TCL and DQL and it’s subtypes. We’ve gone through each command in detail with its syntax and example  that will assist you in writing queries. The SQL commands’ allows you to construct and manipulate a wide range of database objects with the different commands. After going through this blog one can easily play with the SQL commands and interact with their database easily.
+
+5.The difference between a composite key, a foreign key and a primary key is a good illustration of the complex and byzantine nature of relational database standards that make database administration an advanced job role requiring specialized skills.
+
+Primary Key:First, a primary key uniquely identifies each record in a database table. Any individual key that does this can be called a candidate key, but only one can be chosen by database engineers as a primary key.
+Composite Key:
+Next, there's the composite key, which is composed of two or more attributes that collectively uniquely identify each record.
+
+An example would be a list of homes on a real estate market. In a well-ordered database, there should be a primary key that uniquely identifies each record.
+there will be two keys that developers might identify as “candidate keys”:
+
+The mortgage number.
+The MLS number.
+
+6.employee tables we have to used a primery key a column default values and colunm unique constraints in sql
+
+
